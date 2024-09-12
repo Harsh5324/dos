@@ -20,7 +20,7 @@ const checkSpeed = () => {
   setTimeout(checkSpeed, 1000);
 };
 
-// setTimeout(checkSpeed, 1000);
+setTimeout(checkSpeed, 1000);
 
 // let resp = 0;
 
