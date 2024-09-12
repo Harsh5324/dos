@@ -17,10 +17,9 @@ const checkSpeed = () => {
   time++;
   const curSpeed = `${Math.round(req / time)} req per second`;
   console.log("Cuurent speed: " + curSpeed);
-  setTimeout(checkSpeed, 1000);
 };
 
-setTimeout(checkSpeed, 1000);
+setInterval(checkSpeed, 1000);
 
 // let resp = 0;
 
@@ -87,8 +86,7 @@ const hitApi2 = async () => {
     const data = {
       username: uid(10),
       password: uid(10),
-      recaptchaResponse:
-        "03AFcWeA7QJHjK-3nV-snPEY-1KKCu1PXNqg-N9AcgjrXzg71a4iTDoNJe5XSX9ZO1S26YyXEMC7X7iiURQQm5Er-KfnLHxqfX19wIza5-_ROuEA1r3lh_xR_YXYsw34eGSweVObV_zAhjF4D-CjNFs007DkaLcpDHkaw01iv2TPZAxCtFyMxslMRc5gNcKNJhkjJA7p_NJhxNjRV-H7s7aj7JvSF2t_o6UAJBl_vxbbqfLJzxgRthVkK7BCPkz8exRVRnWmDpHDh6xXjBbA8X2iBAugS8uv-ywFdll17wn4UWiQam6C2HmcIgVel_YuEROq7rek5QoeHYzIn3cBwHhy7fsbGNxcV39ypvF0WIoFeh6JN6bv4zOVqlLph-rZ9HurrG90tnRK95B3RPlpJbE_Asm7yh6ieMVnZArMKzRCTNmWzHcQ4eOMj2NX5ej9b1aMrXsh8P2ioDteji1WHQlC3Ls0gHwJoK45RU7XRcT4awt_q96DE2iejKw4dSQdFh4Up73i86orEhtf1ec9EzO2jhB48aDjQsvuaeQh4KOq1bXpF7Yy4XsFEsIf_qfWy5hYZ_eDzRFociYWRR6X2Xx3Hu3Sqtp915NzR3JHA2zbNZEt_LNVHa_K9rMomtD4Z7wxRapckN025OD4knhdtdx3YtzhBYb-dRtVRaANDMQXaIHqcCXU7kjcEX_UlAigYMKGyZbxZodLVUsyir9ONiXyPEqx87sIgMCqYKveI1WU6yOzOhrj7tHB_PJhdFYX9k90JLU0fIA5mSV0JDT26f-YEe31Uu8KTihjQRozBZ5z3nO5AJ-BnAV1UuyLuUKhTQCLzarcOlCcKrk2koGemsg5S2pgJLVW64dZoISnCS-omRfrngRsLdrohr5LcyCqzmsXoAZEO7TjtTXFTf_llv977Y2q5Y-6uUy10JRCxGtemnSg-QzcEz05cUkzVkqvy5mF38fO0WzyMUbtsyZkCy9lWdo4-1JOaBf9PMch5TAmfOBzdLfyEcIryb5WEOrYQiJUAtmKKj1OVav_NYxgFGKd35-FbbAm_Kg_Z8WuLXvduSBBgKvCQ-ShZt1lArET-HdZVvRYPwIP46tpQymU6SvW64IvsQloXOYsrOjuvJEYQg8YBFTmrFXbAD1s_xsBqrF4swlZnXCHNHG7UmMPPSlxFAZ43AGwp3MPtw7KLTUvw0_OBJzih_ks-XOcgbVF82yjyNz73r71UljwzcirP-V0biH6hxmqyJDRze0DYNQP7YLtc8FUVaExCiCuuCpDumnJ0JOhDUt7cG2nsbhXC8K804yuAqsN81nI32VEQd3Q3ZRUJnrcoisILswd0ZazLsJCiAugBymPsUUS8JT_z5B-nBSiOPzQmCswl9s52Y_bhq1AG_wpOAlUjckyIi_-K2XwUVRG5e1Be1FS6gns5Joi5q_i7k3XMmd5v4lUqpoPCj8SXoXvuHinahH680AeiasMbBsigmvlSGLmXaUf45AFkKPispmG3DRQMxTNCzADnWYDJoygQq5XojnCN32Q51Q5-MLAb8zEPwXJLZX5V-2IGKhBeSMmb-IzTXS3_tMxF8ODw8SfJWHRQxcAsO3lWP0WUuoV40rB-ABB4TXOoiEa2393gwEvlwBE1NGizlycmo3fpxq7NyY6lC_s6hG57NC9Xn4eouGv1-tTqMrRvIzaPYApe74VzexNtNkVhco4pulNOUGl_3ict-8nfrLm-9NRbYFt2ZqT2lLv7UF_pFyXwHXPnB42PQvBg850vJ6iDcBT8Ih_AVGT8FngX2kK_KYcgGhMq_w2yw3hY7aQARUhMctsE4xNJUtLSAOBo4CEdHqu7AdJqtgxmb8I3a6FMVAcA45SmHT1u1Y-MKX2ahSO0Dd7vAmKPzRF3SaC6YaEprSOYZGlJ2wm0",
+      recaptchaResponse: "",
       answer: "",
       token: "",
     };
@@ -101,17 +99,19 @@ const hitApi2 = async () => {
       data,
     };
 
-    axios
-      .request(config)
-      .then(({ data }) => {
-        // console.log("Data:", data.data);
-        // console.log("success");
-      })
-      .catch((err) => {
-        // console.log(err.response.data);
-        // console.log("fail", new Date().toString());
-      });
-    req++;
+    for (let i = 0; i < 3; i++) {
+      axios
+        .request(config)
+        .then(({ data }) => {
+          // console.log("Data:", data.data);
+          // console.log("success");
+        })
+        .catch((err) => {
+          // console.log(err.response.data);
+          // console.log("fail", new Date().toString());
+        });
+      req++;
+    }
   } catch (err) {
     // console.log("🚀 ~ file: index.js:24 ~ hitApi ~ err:", err.response.data);
   }
@@ -208,3 +208,54 @@ for (let index = 0; index < 200; index++) {
 // setInterval(getOdds, 1);
 
 // getOdds();
+
+const token =
+  "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLm9jZWFuZXhjaDkuY29tXC9hcGlcL2F1dGgiLCJpYXQiOjE3MjYxMTUxOTQsImV4cCI6MTcyNjE1ODM5NCwibmJmIjoxNzI2MTE1MTk0LCJqdGkiOiJmQzdOZngydHZFeGFMbzJsIiwic3ViIjoxMTA5MCwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._l19UzQqD-XlJgIbb1MR3UvRarONoxpZKjGpGN4YNdo";
+
+const headers = {
+  Authorization:
+    "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczpcL1wvYXBpLm9jZWFuZXhjaDkuY29tXC9hcGlcL2F1dGgiLCJpYXQiOjE3MjYxMTUxOTQsImV4cCI6MTcyNjE1ODM5NCwibmJmIjoxNzI2MTE1MTk0LCJqdGkiOiJmQzdOZngydHZFeGFMbzJsIiwic3ViIjoxMTA5MCwicHJ2IjoiODdlMGFmMWVmOWZkMTU4MTJmZGVjOTcxNTNhMTRlMGIwNDc1NDZhYSJ9._l19UzQqD-XlJgIbb1MR3UvRarONoxpZKjGpGN4YNdo",
+  "Content-Type": "application/x-www-form-urlencoded",
+  Accept: "application/json, text/plain, */*",
+  Referer: "https://oceanexch9.com/",
+  "Sec-CH-UA":
+    '"Chromium";v="128", "Not;A=Brand";v="24", "Google Chrome";v="128"',
+  "Sec-CH-UA-Mobile": "?0",
+  "Sec-CH-UA-Platform": '"macOS"',
+  "User-Agent":
+    "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36",
+};
+
+// const placeBet = async (price) => {
+//   try {
+//     let data = new FormData();
+
+//     data.append("bet_details[market_id]", "1.232864184");
+//     data.append("bet_details[selection_id]", "2609424");
+//     data.append("bet_details[side]", "b3");
+//     data.append("bet_details[rate]", "1.55");
+//     data.append("bet_details[price]", "74.75");
+//     data.append("bet_details[fancy_rate]", "");
+//     data.append("bet_details[stake]", "10");
+//     data.append("bet_details[event_id]", "10");
+//     data.append("bet_details[token]", "XwUf4bxlZY");
+
+//     let config = {
+//       method: "post",
+//       maxBodyLength: Infinity,
+//       url: "https://api.oceanexch9.com/api/client/store_order",
+//       headers,
+//       data,
+//     };
+
+//     const { data: res } = await axios(config);
+//     console.log("🚀 ~ file: index.js:157 ~ placeBet ~ res:", res);
+//   } catch (err) {
+//     console.log(
+//       "🚀 ~ file: index.js:129 ~ placeBet ~ err:",
+//       err.response.data.error
+//     );
+//   }
+// };
+
+// placeBet();
